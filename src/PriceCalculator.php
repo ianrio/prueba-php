@@ -13,9 +13,10 @@ class PriceCalculator
 
         $discount = $order->getDiscountPercent();
         if ($discount > 0) {
-            $total = $total - ($total * ($discount / 100));
+            $total = $order->isGuest()
+                ? $total - ($total * ($discount / 100))
+                : ($total - ($total * ($discount / 100))) * 0.95;
         }
-
         return round($total, 2);
     }
 }
