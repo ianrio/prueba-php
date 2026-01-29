@@ -8,7 +8,7 @@ class PriceCalculator
 
         foreach ($order->getItems() as $item) {
             // BUG: no se está teniendo en cuenta la cantidad real
-            $total += $item['price'] * 1;
+            $total += $item['price'] * $item['quantity'];
         }
 
         $discount = $order->getDiscountPercent();
